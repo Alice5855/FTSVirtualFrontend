@@ -34,7 +34,7 @@ class Header extends Component {
         return(
             <>
                 <div className="">
-                    <Navbar color="light" light expand="md">
+                    <Navbar light expand="md">
                         <NavbarBrand href="/">
                             <div className="imgWrapper">
                                 <img src = "Logonshit.png"></img>
@@ -45,7 +45,7 @@ class Header extends Component {
                             <Nav className="ms-auto" navbar>
                             <NavItem>
                                 <NavLink>
-                                    <a>Page1</a>
+                                    <SubHeader />
                                 </NavLink>
                             </NavItem>
                             <NavItem>

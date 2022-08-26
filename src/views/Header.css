@@ -14,3 +14,6 @@ a {
 .nav-item {
     text-align: center;
 }
+.navbar {
+    background-color: #ddf5fb !important;
+}

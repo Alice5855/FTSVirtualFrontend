@@ -1,38 +1,42 @@
 import React, { Component } from 'react';
-import {
-    Collapse
-} from 'reactstrap';
+import { Collapse } from 'reactstrap';
 
 // WIP
+
 class SubHeader extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        this.state = {collapse:false};
+        this.state = { collapse: false };
     }
 
     toggle() {
-        this.setState({collapse: !this.state.collapse});
+        this.setState({ collapse: !this.state.collapse });
     }
 
-    render(){
+    render() {
         return (
-            <>
-                <div className='menu'>
-                    <div className='menua'>
-                        <a onClick={this.toggle}>Menu1</a>
-                    </div>
-                    <Collapse isOpen={this.state.collapse}>
-                        <div className='subMenu'>
-                            <a>submenu1</a>
-                            <a>submenu2</a>
-                            <a>submenu3</a>
+            <div>
+                <a onClick={this.toggle}>
+                    Toggle
+                </a>
+                <Collapse isOpen={this.state.collapse}>
+                    <div className='d-inline-block row'>
+                        <div className='col'>
+                            <a>
+                                subMenu
+                            </a>
+                            <a>
+                                subMenu
+                            </a>
+                            <a>
+                                subMenu
+                            </a>
                         </div>
-                    </Collapse>
-                </div>
-            </>
-        )
+                    </div>
+                </Collapse>
+            </div>
+        );
     }
 }
-
-export default SubHeader;
+export default SubHeader
