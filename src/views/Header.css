@@ -1,0 +1,16 @@
+/* WIP */
+.imgWrapper {
+    height: 60px;
+}
+.imgWrapper img {
+    height: 100%;
+}
+a {
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 100px;
+}
+.nav-item {
+    text-align: center;
+}
