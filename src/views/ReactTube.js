@@ -1,16 +1,13 @@
 import React from 'react';
+import ReactPlayer from 'react-player/youtube';
 
-class ReactTube extends React.Component {
-    render() {
-        return(
-            <div className='playerWrapperWrapper'>
-                <div className='playerWrapper'>
-                    <video width="100%" height="100%">
-                        <source src="video.mp4" type="video/mp4"></source>
-                    </video>
-                </div>
+export default function ReactTube() {
+    return(
+        <div className='d-flex justify-content-center'>
+            <div className='playerWrapper'>
+                <ReactPlayer className='player' url="https://www.youtube.com/watch?v=3RxlzJWWzdY" loop='true' muted='true' playing='true'/>
+                <img src="" alter="ytplayer"/>
             </div>
-        )
-    }
+        </div>
+    )
 }
-export default ReactTube

@@ -1,6 +1,45 @@
+body{
+    margin: 0;
+}
+
 .playerWrapper {
-    width: 100%;
+    position: relative; 
+    width: 100vw;
+    height: 50vh;
+    margin-top: 1rem;
     overflow: hidden;
-    height: 300px;
-    border: 1px solid;
+}
+.player {
+    width: 80% !important;
+    height: 100% !important;
+    margin-left: 10%;
+}
+
+.player iframe {
+    position: absolute;
+    width: 150% !important;
+    height: 230% !important;
+    top: -70%;
+    left: -25%;
+}
+
+@media screen and (max-width: 768px) {
+    .cBanner img{
+        width: 70%;
+    }
+    .player iframe {
+        width: 150% !important;
+        height: 150% !important;
+        top: -25%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .cBanner img{
+        width: 90%;
+    }
+    .player iframe {
+        width: 300% !important;
+        left: -100%;
+    }
 }

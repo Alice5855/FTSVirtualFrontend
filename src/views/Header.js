@@ -12,7 +12,6 @@ import {
     DropdownMenu,
     DropdownItem } from 'reactstrap';
 import "./Header.css";
-import SubHeader from "./SubHeader";
 
 // WIP
 class Header extends Component {
@@ -20,8 +19,14 @@ class Header extends Component {
         super(props);
     
         this.toggle = this.toggle.bind(this);
+        this.collapse1 = this.collapse1.bind(this);
+        this.collapse2 = this.collapse2.bind(this);
+        this.collapse3 = this.collapse3.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            collapse1: false,
+            collapse2: false,
+            collapse3: false
         };
     }
     toggle() {
@@ -29,15 +34,30 @@ class Header extends Component {
             isOpen: !this.state.isOpen
         });
     }
-    const 
+    collapse1() {
+        this.setState({collapse1: !this.state.collapse1})
+        this.setState({collapse2: false})
+        this.setState({collapse3: false})
+    }
+    collapse2() {
+        this.setState({collapse1: false})
+        this.setState({collapse2: !this.state.collapse2})
+        this.setState({collapse3: false})
+    }
+    collapse3() {
+        this.setState({collapse1: false})
+        this.setState({collapse2: false})
+        this.setState({collapse3: !this.state.collapse3})
+    }
+    
     render(){
         return(
             <>
-                <div className="">
+                <header>
                     <Navbar light expand="md">
                         <NavbarBrand href="/">
                             <div className="imgWrapper">
-                                <img src = "Logonshit.png"></img>
+                                <img src = "Logonshit.png" alt="logo"></img>
                             </div>
                         </NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
@@ -45,32 +65,31 @@ class Header extends Component {
                             <Nav className="ms-auto" navbar>
                             <NavItem>
                                 <NavLink>
-                                    <SubHeader />
+                                    <a id="navmenu" onClick={this.collapse1}>
+                                        Toggle
+                                    </a>
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink>
-                                    <a>Page2</a>
+                                    <a id="navmenu" onClick={this.collapse2}>
+                                        Toggle
+                                    </a>
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink>
-                                    <a>Page3</a>
+                                    <a id="navmenu" onClick={this.collapse3}>
+                                        Toggle
+                                    </a>
                                 </NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink>
-                                    <a>Page4</a>
-                                </NavLink>
-                            </NavItem>
-                            
-                            {/* 4 페이지 이상 권장하지 않음 */}
 
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
-                                User
+                                    User
                                 </DropdownToggle>
-                                <DropdownMenu end>
+                                <DropdownMenu right style={{right: '0%'}}>
                                 <DropdownItem>
                                     Sign in
                                 </DropdownItem>
@@ -79,14 +98,60 @@ class Header extends Component {
                                 </DropdownItem>
                                 <DropdownItem divider />
                                 <DropdownItem>
-                                    Something i dont know
+                                    
                                 </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                             </Nav>
                         </Collapse>
                     </Navbar>
-                </div>
+
+                    <Collapse isOpen={this.state.collapse1}>
+                        <div className='py-2 subHeader'>
+                            <div className="subMenu1">
+                                <a id="navmenu">
+                                    subMenu
+                                </a>
+                                <a id="navmenu">
+                                    subMenu
+                                </a>
+                                <a id="navmenu">
+                                    subMenu
+                                </a>
+                            </div>
+                        </div>
+                    </Collapse>
+                    <Collapse isOpen={this.state.collapse2}>
+                        <div className='py-2 subHeader'>
+                            <div className="subMenu2">
+                                <a id="navmenu">
+                                    subMenu
+                                </a>
+                                <a id="navmenu">
+                                    subMenu
+                                </a>
+                                <a id="navmenu">
+                                    subMenu
+                                </a>
+                            </div>
+                        </div>
+                    </Collapse>
+                    <Collapse isOpen={this.state.collapse3}>
+                        <div className='py-2 subHeader'>
+                            <div className="subMenu3">
+                                <a id="navmenu">
+                                    subMenu
+                                </a>
+                                <a id="navmenu">
+                                    subMenu
+                                </a>
+                                <a id="navmenu">
+                                    subMenu
+                                </a>
+                            </div>
+                        </div>
+                    </Collapse>
+                </header>
             </>
         );
     };
