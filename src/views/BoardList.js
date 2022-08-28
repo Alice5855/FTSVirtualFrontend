@@ -59,7 +59,7 @@ class BoardList extends Component{
             )
         }
 
-        return(
+        return( // pageNum 크기가 정상 범주인 경우 출력
             <>
                 <button 
                     onClick={()=> this.getBoardListData(pageNum)}>{screenNum}
@@ -68,7 +68,7 @@ class BoardList extends Component{
         )
     }
 
-    getBoardListData(pageNum){ 
+    getBoardListData(pageNum){  // 게시물 리스트를 초기화하는 메소드. 
         BoardServices.getBoardPage(pageNum).then((res)=>{
             this.setState({
                 List: res.data.list,
