@@ -53,7 +53,7 @@ class InputForm extends Component {
         }
     }
     // 기능정의되어 넘어온 crud값을 통해 button text와 onClick 링크를
-    // mapping 해줌. view의 경우 이미 data가 넘어온 상태일 것이므로
+    // 버튼에 mapping 해줌. view의 경우 이미 data가 넘어온 상태일 것이므로
     // btn에 기능정의를 따로 하지 않음
 
     crud() {
