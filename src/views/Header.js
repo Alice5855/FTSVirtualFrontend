@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
     Collapse,
     Navbar,
@@ -49,11 +50,13 @@ class Header extends Component {
         this.setState({collapse2: false})
         this.setState({collapse3: !this.state.collapse3})
     }
-    
+    // subMenu가 각자 열리도록 하게 하기 위해서, 또한 모바일 화면에서 사용되는 Collapse 또한 존재하기 때문에 각각 다른 State를 적용하여 따로 collapse 될 수 있도록 함
+    // .subHeader의 위치를 화면 크기에 맞춰서 이동할 수 있도록 Media query 적용함. Header.css 참고
+    // 현재 anchor tag들의 경우 view의 controller 작동에 맞춰 data를 넘길 수 있도록 해야함. tag를 변경해야 할 필요 있을지도?
     render(){
         return(
             <>
-                <header>
+                <header style={{position: 'fixed', zIndex: '9999'}}>
                     <Navbar light expand="md">
                         <NavbarBrand href="/">
                             <div className="imgWrapper">
@@ -109,13 +112,13 @@ class Header extends Component {
                     <Collapse isOpen={this.state.collapse1}>
                         <div className='py-2 subHeader'>
                             <div className="subMenu1">
-                                <a id="navmenu">
+                                <Link to="/Notice" id="navmenu" className="nav-link">
+                                    Notice
+                                </Link>
+                                <a id="navmenu" className="nav-link">
                                     subMenu
                                 </a>
-                                <a id="navmenu">
-                                    subMenu
-                                </a>
-                                <a id="navmenu">
+                                <a id="navmenu" className="nav-link">
                                     subMenu
                                 </a>
                             </div>
@@ -124,13 +127,13 @@ class Header extends Component {
                     <Collapse isOpen={this.state.collapse2}>
                         <div className='py-2 subHeader'>
                             <div className="subMenu2">
-                                <a id="navmenu">
+                                <a id="navmenu" className="nav-link">
                                     subMenu
                                 </a>
-                                <a id="navmenu">
+                                <a id="navmenu" className="nav-link">
                                     subMenu
                                 </a>
-                                <a id="navmenu">
+                                <a id="navmenu" className="nav-link">
                                     subMenu
                                 </a>
                             </div>
@@ -139,13 +142,13 @@ class Header extends Component {
                     <Collapse isOpen={this.state.collapse3}>
                         <div className='py-2 subHeader'>
                             <div className="subMenu3">
-                                <a id="navmenu">
+                                <a id="navmenu" className="nav-link">
                                     subMenu
                                 </a>
-                                <a id="navmenu">
+                                <a id="navmenu" className="nav-link">
                                     subMenu
                                 </a>
-                                <a id="navmenu">
+                                <a id="navmenu" className="nav-link">
                                     subMenu
                                 </a>
                             </div>

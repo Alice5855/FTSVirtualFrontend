@@ -2,7 +2,8 @@ import { Route } from "react-router-dom";
 import Header from "./views/Header";
 import 'bootstrap/dist/css/bootstrap.css'
 import Main from "./views/Main";
-import Footer from "./views/Footer"
+import Footer from "./views/Footer";
+import Nboardlist from "./views/Nboardlist";
 
 const App = () => {
   
@@ -10,7 +11,9 @@ const App = () => {
   return (
     <>
       <Header />
-      <Main />
+      <div id="spaceFiller" style={{height: '10vh'}}></div>
+      <Route path = "/" component = {Main} exact={true} />
+      <Route path = "/Notice" component={Nboardlist} />
       <Footer />
     </>
   );

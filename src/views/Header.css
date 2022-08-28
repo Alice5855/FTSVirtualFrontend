@@ -12,7 +12,7 @@ header {
 .imgWrapper img {
     height: 100%;
 }
-a#navmenu {
+#navmenu {
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
