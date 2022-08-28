@@ -12,7 +12,7 @@ const App = () => {
     <>
       <Header />
       <div id="spaceFiller" style={{height: '10vh'}}></div>
-      <Route path = "/" component = {Main} exact={true} />
+      <Route path = "/" component = {Main} />
       <Route path = "/Notice" component={Nboardlist} />
       <Footer />
     </>
