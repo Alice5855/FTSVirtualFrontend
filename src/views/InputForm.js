@@ -6,9 +6,9 @@ class InputForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            articleId: "",
-            articleTitle: "",
-            articleContent: "",
+            bnum: "",
+            btitle: "",
+            btext: "",
             crud: props.match.params.crud,
         };
         if (this.state.crud !== "Insert") {
@@ -57,7 +57,7 @@ class InputForm extends Component {
     // btn에 기능정의를 따로 하지 않음
 
     crud() {
-        const { articleId, articleTitle, articleContent, crud } = this.state;
+        const { bnum, btitle, btext, crud } = this.state;
 
         let crudType = "";
 
@@ -75,10 +75,10 @@ class InputForm extends Component {
         // 값들 (const {}부분)이 된다.
 
         let form = new FormData();
-        form.append("articleContent", articleContent);
-        form.append("articleTitle", articleTitle);
+        form.append("btext", btext);
+        form.append("btitle", btitle);
         if (crud !== "Insert") {
-            form.append("articleId", articleId);
+            form.append("bnum", bnum);
         }
         // form에 입력된 data를 props에 저장하는 부분. Insert가 아닌
         // 경우 백에서 넘어온 articleID를 사용해야 하므로 if(!==)문을
@@ -100,9 +100,9 @@ class InputForm extends Component {
         axios.get("/view.do").then((res) => {
             const data = res.data;
             this.setState({
-                articleId: data.articleId,
-                articleTitle: data.articleTitle,
-                articleContent: data.articleContent,
+                bnum: data.bnum,
+                btitle: data.btitle,
+                btext: data.btext,
             });
         });
     }
@@ -110,10 +110,10 @@ class InputForm extends Component {
     // 출력할 수 있도록 함
 
     createArticleIdTag() {
-        const articleId = this.state.articleId;
+        const bnum = this.state.bnum;
         const crud = this.state.crud;
         if (crud !== "Insert") {
-            return <input type="hidden" value={articleId} readOnly />;
+            return <input type="hidden" value={bnum} readOnly />;
         } else {
             return null;
         }
@@ -122,8 +122,8 @@ class InputForm extends Component {
     // articleId를 readOnly 처리하여 수정할 수 없도록 함
 
     render() {
-        const articleTitle = this.state.articleTitle;
-        const articleContent = this.state.articleContent;
+        const btitle = this.state.btitle;
+        const btext = this.state.btext;
 
         return (
             <>
@@ -132,9 +132,9 @@ class InputForm extends Component {
                 <h3>제목</h3>
                 <input
                     type="text"
-                    value={articleTitle}
+                    value={btitle}
                     onChange={(event) =>
-                        this.setState({ articleTitle: event.target.value })
+                        this.setState({ btitle: event.target.value })
                     }
                 />
                 {/* input form에 값이 변경되었을 때에(onChange)
@@ -144,9 +144,9 @@ class InputForm extends Component {
                 <textarea
                     rows="10"
                     cols="20"
-                    value={articleContent}
+                    value={btext}
                     onChange={(event) =>
-                        this.setState({ articleContent: event.target.value })
+                        this.setState({ btext: event.target.value })
                     }
                 ></textarea>
                 <br /> <br />

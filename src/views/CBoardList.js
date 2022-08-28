@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { Component } from "react";
-import BoardServices from "./BoardServices";
+import CBoardServices from "./CBoardServices";
 import { Link } from "react-router-dom";
 
-class BoardList extends Component{
+class CBoardList extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -31,9 +31,6 @@ class BoardList extends Component{
         // 4.2. First, Last 버튼 누르면 각각 첫, 마지막 페이지로 이동
         return(
             <div className="pageMoveBtnContainer">
-                <h1>받은값 확인 및 함수실행 테스트용</h1> <br/>
-                <h3>currentPage : {currentPage}</h3> <br/>
-                <h3>maxPage : {maxPage}</h3> <br/>
                 {this.createPageBtnElement(currentPage-2, maxPage)}
                 {this.createPageBtnElement(currentPage-1, maxPage)}
                 {this.createPageBtnElement(currentPage, maxPage)}
@@ -69,7 +66,7 @@ class BoardList extends Component{
     }
 
     getBoardListData(pageNum){  // 게시물 리스트를 초기화하는 메소드. 
-        BoardServices.getBoardPage(pageNum).then((res)=>{
+        CBoardServices.getBoardPage(pageNum).then((res)=>{
             this.setState({
                 List: res.data.list,
                 currentPage: res.data.pageInfo.currentPage,
@@ -96,23 +93,24 @@ class BoardList extends Component{
                             this.state.List.map(
                                 board =>
                                     <tr key={board.bnum}>
-                                        <td>{board.bnum}</td>
-                                        <td>{board.btitle}</td>
-                                        <td>{board.bwriter}</td>
-                                        <td>{board.btext}</td>
-                                        <td>{board.bregDate}</td>
+                                            <td>{board.bnum}</td>
+                                            <td>{board.btitle}</td>
+                                            <td>{board.bwriter}</td>
+                                            <td>{board.btext}</td>
+                                            <td>{board.bregDate}</td>
                                     </tr>
                             )
                         }
                     </tbody>
                 </table>
-                <div>
-                    현재 페이지 : {this.state.currentPage} <br/>
-                    마지막 페이지 : {this.state.maxPage} <br/>
+                <div className="pagingBtn">
                     {this.createPageBtn(this.state.currentPage, this.state.maxPage)}
+                </div>
+                <div className="btn_moveWriteMove">
+                    <button>글쓰기</button>
                 </div>
             </div>
         );
     };
 };
-export default BoardList;
+export default CBoardList;
