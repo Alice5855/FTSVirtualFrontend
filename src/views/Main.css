@@ -41,4 +41,18 @@ body{
         width: 300% !important;
         left: -100%;
     }
+    .snsLinks {
+        display: block !important;
+        width: 100%;
+        margin-right: 0 !important;
+        margin-left: 50%;
+    }
+    .linkIcon {
+        display: inline-block;
+        width: 20%;
+        margin-left: 10% !important;
+    }
+    .linkIcon img {
+        width: 50px;
+    }
 }

@@ -60,7 +60,8 @@ class Header extends Component {
                     <Navbar light expand="md">
                         <NavbarBrand href="/">
                             <div className="imgWrapper">
-                                <img src = "Logonshit.png" alt="logo"></img>
+                                <img src = "http://localhost:3000/images/Logonshit.png" alt="logo"></img>
+                                {/* 절대경로를 사용해야 이동된 URL에서도 이미지가 올바르게 표시된다 */}
                             </div>
                         </NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
