@@ -15,18 +15,18 @@ class Footer extends Component {
 
                         <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
                             <li>
-                                <a className="text-muted" href="https://www.reddit.com/r/Hololive/" target={'_blank'} style={{width: '60px'}}>
-                                    <img src="rd_icon.svg" width="26"/>
+                                <a className="text-muted" href="https://www.reddit.com/r/Hololive/" target={'_blank'} style={{width: '60px'}} rel="noreferrer">
+                                    <img src="rd_icon.svg" alt="Hololive reddit" width="26"/>
                                 </a>
                             </li>
                             <li>
-                                <a className="text-muted" href="https://twitter.com/hololive_en" target={'_blank'} style={{width: '60px'}}>
-                                    <img src="tw_icon.svg" width="26"/>
+                                <a className="text-muted" href="https://twitter.com/hololive_en" target={'_blank'} style={{width: '60px'}} rel="noreferrer">
+                                    <img src="tw_icon.svg" alt="Hololive twitter" width="26"/>
                                 </a>
                             </li>
                             <li>
-                                <a className="text-muted" href="https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg" target={'_blank'} style={{width: '60px'}}>
-                                    <img src="yt_icon.svg" width="26"/>
+                                <a className="text-muted" href="https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg" target={'_blank'} style={{width: '60px'}} rel="noreferrer">
+                                    <img src="yt_icon.svg" alt="Hololive youtube" width="26"/>
                                 </a>
                             </li>
                         </ul>

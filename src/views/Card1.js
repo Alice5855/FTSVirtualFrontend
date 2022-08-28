@@ -1,5 +1,5 @@
 import React from "react";
-import { Parallax, ParallaxProvider, useParallax } from "react-scroll-parallax";
+import { Parallax, useParallax } from "react-scroll-parallax";
 
 const Card1 = () => {
     const parallax = useParallax({

@@ -67,24 +67,18 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ms-auto" navbar>
                             <NavItem>
-                                <NavLink>
-                                    <a id="navmenu" onClick={this.collapse1}>
-                                        Toggle
-                                    </a>
+                                <NavLink id="navmenu" onClick={this.collapse1}>
+                                    Toggle
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink>
-                                    <a id="navmenu" onClick={this.collapse2}>
-                                        Toggle
-                                    </a>
+                                <NavLink id="navmenu" onClick={this.collapse2}>
+                                    Toggle
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink>
-                                    <a id="navmenu" onClick={this.collapse3}>
-                                        Toggle
-                                    </a>
+                                <NavLink id="navmenu" onClick={this.collapse3}>
+                                    Toggle
                                 </NavLink>
                             </NavItem>
 
@@ -92,7 +86,7 @@ class Header extends Component {
                                 <DropdownToggle nav caret>
                                     User
                                 </DropdownToggle>
-                                <DropdownMenu right style={{right: '0%'}}>
+                                <DropdownMenu end style={{right: '0%'}}>
                                 <DropdownItem>
                                     Sign in
                                 </DropdownItem>

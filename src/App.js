@@ -13,6 +13,7 @@ const App = () => {
       <Header />
       <div id="spaceFiller" style={{height: '10vh'}}></div>
       <Route path = "/" component = {Main} exact={true} />
+      {/* exact 속성을 state에 붙임. url이 정확히 '/'일 때만 Main component를 표시 */}
       <Route path = "/Notice" component={Nboardlist} />
       <Footer />
     </>
