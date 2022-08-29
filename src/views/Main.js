@@ -10,10 +10,10 @@ class Main extends Component {
             <>
                 <div className="container-fluid">
                     <ReactTube />
-                        <div className="d-flex row py-5 cardWrapper">
+                        <div className="d-flex row py-5 mx-5 cardWrapper">
                             <Card1 />
                         </div>
-                        <div className="d-flex row py-5 cardWrapper">
+                        <div className="d-flex row py-5 mx-5 cardWrapper">
                             <Card2 />
                         </div>
                 </div>

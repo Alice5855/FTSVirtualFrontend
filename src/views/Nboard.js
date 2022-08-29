@@ -16,7 +16,7 @@ class Nboard extends Component {
                 <Route path={"/Notice"} component={Nboardlist} exact={true} />
                 <Route path={"/Notice/Read"} component={NboardR} />
                 {/* *****TEMPORARY LINK***** */}
-                <Route path={"/Notice/CUD"} component={NboardCUDForm} />
+                <Route path={"/Notice/:crud"} component={NboardCUDForm}/>
                 {/* *****TEMPORARY LINK***** */}
             </div>
         )
