@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Main from "./views/Main";
 import Footer from "./views/Footer";
 import Nboard from "./views/Nboard";
-import CBoardComponent from "./views/CBoardComponent"
+import CBoardComponent from "./views/CBoardComponent";
 
 const App = () => {
   

@@ -4,11 +4,14 @@ import { Route } from "react-router-dom";
 import CBoardServices from "./CBoardServices";
 import { Link } from "react-router-dom";
 import CBoardList from "./CBoardList";
+import CboardReadForm from "./CboardReadForm";
 import CboardCUDForm from "./CboardCUDForm";
+import InputForm from "./InputForm";
 import { render } from "@testing-library/react";
 
 class CBoardComponent extends Component {
     render(){
+        
         return(
             <div className="container-fluid py-5 px-5" style={{paddingTop:'30%'}}>
                 <div>
@@ -17,8 +20,9 @@ class CBoardComponent extends Component {
                     </h1>
                 </div>
                 <Route path={"/Community"} component={CBoardList} exact={true} />
-                {/* <Route path={"/Notice/Read"} component={NboardR} /> */}
-                <Route path={"/CboardCUDForm/:crud"} component={CboardCUDForm} />
+                <Route path={"/Community/crud:crud"} component={InputForm} />
+                <Route path={"/Community/read/bnum=:bnum"} component={CboardReadForm} />
+                
             </div>
         )
     }

@@ -8,7 +8,7 @@ class CBoardList extends Component{
         super(props);
         this.state = {
             List: [],
-            currentPage: 1,
+            currentPage: 0,
             maxPage: 0
         };
 
@@ -75,6 +75,10 @@ class CBoardList extends Component{
         });
     }
 
+    readBoard(bnum){
+        this.props.history.push('//Community/read?bnum=${bnum}');
+    }
+
     render(){
         return(
             <div>
@@ -94,7 +98,11 @@ class CBoardList extends Component{
                                 board =>
                                     <tr key={board.bnum}>
                                             <td>{board.bnum}</td>
-                                            <td>{board.btitle}</td>
+                                            <td>
+                                                <Link to={`/Community/read/bnum=${board.bnum}`}>
+                                                    {board.btitle}
+                                                </Link>
+                                            </td>
                                             <td>{board.bwriter}</td>
                                             <td>{board.btext}</td>
                                             <td>{board.bregDate}</td>
@@ -107,7 +115,9 @@ class CBoardList extends Component{
                     {this.createPageBtn(this.state.currentPage, this.state.maxPage)}
                 </div>
                 <div className="btn_moveWriteMove">
-                    <button>글쓰기</button>
+                    <Link to="/Community/crudInsert">
+                        <button>글쓰기</button>
+                    </Link>
                 </div>
             </div>
         );

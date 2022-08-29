@@ -64,18 +64,17 @@ class InputForm extends Component {
         if (crud === "Update") {
             crudType = "/modify.do";
         } else if (crud === "Delete") {
-            crudType = "/delete.do";
+            crudType = "/deleteProcess.do";
         } else if (crud === "Insert") {
-            crudType = "/Community/insertProcess.do";
+            crudType = "/insertProcess.do";
         } else if (crud === "View") {
             return null;
         }
-        console.log(crud);
         // crud에 정의된 기능에 따라 controller의 기능으로 url을 넘겨줌
         // 이 때 넘길 값들은 props에 저장되는 각각의 column값에 맞춘
         // 값들 (const {}부분)이 된다.
 
-        let form = new FormData();  
+        let form = new FormData();
         form.append("Btext", btext);
         form.append("Btitle", btitle);
         form.append("Bwriter", bwriter);
