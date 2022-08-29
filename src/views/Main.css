@@ -22,6 +22,14 @@ body{
     left: -25%;
 }
 
+.list-group-item {
+    background-color: #DDF5FB;
+}
+
+.formBody {
+    background-color: #5EDDEE;
+}
+
 @media screen and (max-width: 768px) {
     .cBanner img{
         width: 70%;

@@ -1,14 +1,8 @@
 import React from "react";
-import { Parallax, useParallax } from "react-scroll-parallax";
 
 const Card1 = () => {
-    const parallax = useParallax({
-        speed: -10,
-    });
-
     return(
-        <Parallax>
-            <div className="px-4 py-5 my-5 mx-5 text-center rounded-5" ref={parallax.ref} style={{backgroundColor: "#25C1FF"}}>
+            <div className="px-4 py-5 my-5 mx-5 text-center rounded-5" style={{backgroundColor: "#25C1FF"}}>
                 <h1 className="display-5 fw-bold">Centered hero</h1>
                 <div className="col-lg-6 mx-auto">
                     <p className="lead mb-4">
@@ -20,7 +14,6 @@ const Card1 = () => {
                     </div>
                 </div>
             </div>
-        </Parallax>
     )
     
 }
