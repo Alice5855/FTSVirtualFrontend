@@ -4,6 +4,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Main from "./views/Main";
 import Footer from "./views/Footer";
 import Nboard from "./views/Nboard";
+import CBoard from "./views/CBoard"; 
+import ViewButton from "./views/ViewButton"
+import InputForm from "./views/InputForm";
 import CBoardComponent from "./views/CBoardComponent";
 
 const App = () => {
@@ -18,6 +21,9 @@ const App = () => {
       <Route path = "/Notice" component={Nboard} />
       <Route path = "/Community" component={CBoardComponent} />
 
+      
+      
+      
       <Footer />
     </>
   );

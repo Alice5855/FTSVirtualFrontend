@@ -3,6 +3,9 @@ import { Route } from "react-router-dom";
 import NboardCUDForm from "./NboardCUDForm";
 import Nboardlist from "./Nboardlist";
 import NboardR from "./NboardR";
+import ViewButton from "./ViewButton";
+
+
 
 class Nboard extends Component {
     render(){
@@ -15,7 +18,11 @@ class Nboard extends Component {
                 </div>
                 <Route path={"/Notice"} component={Nboardlist} exact={true} />
                 <Route path={"/Notice/Read"} component={NboardR} />
-                <Route path={"/Notice/:crud"} component={NboardCUDForm} />
+                {/* *****TEMPORARY LINK***** */}
+                <Route path={"/Notice/CUD"} component={NboardCUDForm} />
+                {/* *****TEMPORARY LINK***** */}
+
+                
             </div>
         )
     }
