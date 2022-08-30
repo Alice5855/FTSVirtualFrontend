@@ -81,7 +81,7 @@ class Header extends Component {
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink id="navmenu" onClick={this.collapse3}>
+                                <NavLink id="navmenu" onClick={this.collapse3} style={{display: 'none'}}>
                                     Toggle
                                 </NavLink>
                             </NavItem>
@@ -113,10 +113,10 @@ class Header extends Component {
                                 <Link to={"/Notice"} id="navmenu" className="nav-link">
                                     Notice
                                 </Link>
-                                <Link to={""} id="navmenu" className="nav-link">
+                                <Link to={"/Community"} id="navmenu" className="nav-link">
                                     Community
                                 </Link>
-                                <Link to={""} id="navmenu" className="nav-link">
+                                <Link to={"/QnA"} id="navmenu" className="nav-link">
                                     Q&A
                                 </Link>
                             </div>
