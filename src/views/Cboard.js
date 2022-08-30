@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import CboardCUDForm from "./CboardCUD";
+import CBoardCUD from "./CBoardCUD";
 import CBoardList from "./CBoardList";
 import NboardR from "./NboardR";
 import ViewButton from "./ViewButton";
 
 
 
-class Cboard extends Component {
+class CBoard extends Component {
     render(){
         return(
             <div className="container-fluid py-5 px-5" style={{paddingTop:'30%'}}>
@@ -19,7 +19,7 @@ class Cboard extends Component {
                 <Route path={"/community"} component={CBoardList} exact={true} />
                 <Route path={"/community/Read"} component={NboardR} />
                 {/* *****TEMPORARY LINK***** */}
-                <Route path={"/community/CUD"} component={CboardCUDForm} />
+                <Route path={"/community/CUD"} component={CBoardCUD} />
                 {/* *****TEMPORARY LINK***** */}
 
                 
@@ -27,4 +27,4 @@ class Cboard extends Component {
         )
     }
 }
-export default Cboard;
+export default CBoard;

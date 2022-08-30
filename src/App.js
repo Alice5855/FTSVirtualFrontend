@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Main from "./views/Main";
 import Footer from "./views/Footer";
 import Nboard from "./views/Nboard";
-import Cboard from "./views/Cboard"; 
+import CBoard from "./views/CBoard"; 
 import ViewButton from "./views/ViewButton"
 import InputForm from "./views/InputForm";
 import CBoardComponent from "./views/CBoardComponent";

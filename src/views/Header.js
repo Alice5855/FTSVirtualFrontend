@@ -110,7 +110,7 @@ class Header extends Component {
                                 <Link to="/Notice" id="navmenu" className="nav-link">
                                     Notice
                                 </Link>
-                                <Link to="/community"  id="navmenu" className="nav-link">
+                                <Link to="/Community"  id="navmenu" className="nav-link">
                                     community
                                 </Link>
                                 <a id="navmenu" className="nav-link">
