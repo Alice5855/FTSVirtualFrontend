@@ -1,16 +1,29 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
+import CBoardServices from "./CBoardServices";
 
 class CboardReadForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-            List: [],
-            currentPage: 1,
-            maxPage: 0
+            btitle: "",
+            bwriter: "",
+            btext: "",
+            bnum: props.match.params.bnum,
+            bregDate: ""
         };
-        console.log("리드폼 들어왔음@@@");
+        console.log(this.state.bnum);
+        this.getBoardData(this.state.bnum); // 이거 실행 안되면 바인드시켜보기
+    }
+
+    getBoardData(bnum){
+        console.log("겟보드데이터 실행")
+        CBoardServices.getBoardData(bnum).then((res)=>{
+            this.setState({
+                // 0829 여기까지했음.
+            })
+        })
     }
 
     render(){

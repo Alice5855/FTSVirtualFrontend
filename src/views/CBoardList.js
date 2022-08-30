@@ -75,10 +75,6 @@ class CBoardList extends Component{
         });
     }
 
-    readBoard(bnum){
-        this.props.history.push('//Community/read?bnum=${bnum}');
-    }
-
     render(){
         return(
             <div>
@@ -98,7 +94,7 @@ class CBoardList extends Component{
                                 board =>
                                     <tr key={board.bnum}>
                                             <td>{board.bnum}</td>
-                                            <td>
+                                            <td>    
                                                 <Link to={`/Community/read/bnum=${board.bnum}`}>
                                                     {board.btitle}
                                                 </Link>

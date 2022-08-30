@@ -21,7 +21,7 @@ class CBoardComponent extends Component {
                 </div>
                 <Route path={"/Community"} component={CBoardList} exact={true} />
                 <Route path={"/Community/crud:crud"} component={InputForm} />
-                <Route path={"/Community/read/bnum=:bnum"} component={CboardReadForm} />
+                <Route path={"/Community/read/bnum=:bnum"}component={CboardReadForm} />
                 
             </div>
         )

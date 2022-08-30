@@ -11,7 +11,7 @@ class CBoardServices{
 
     getBoard(bnum){
         console.log("getBoard 실행 : " + bnum);
-        return axios.get(CBOARD_API_BASE_URL + "/getBoard.do?bnum="+ bnum);
+        return axios.get(CBOARD_API_BASE_URL + "/view.do?bnum="+bnum);
     }
 
 }
