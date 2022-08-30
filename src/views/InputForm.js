@@ -6,9 +6,10 @@ class InputForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            articleId: "",
-            articleTitle: "",
-            articleContent: "",
+          
+            btitle: "",
+            btext: "",
+           
             crud: props.match.params.crud,
         };
         if (this.state.crud !== "Insert") {
@@ -57,29 +58,32 @@ class InputForm extends Component {
     // btn에 기능정의를 따로 하지 않음
 
     crud() {
-        const { articleId, articleTitle, articleContent, crud } = this.state;
-
+        const {bnum, btitle, btext, crud, bwriter,bregdate } = this.state;
         let crudType = "";
 
         if (crud === "Update") {
-            crudType = "/updateProcess.do";
+            crudType = "/modify.do";
         } else if (crud === "Delete") {
-            crudType = "/deleteProcess.do";
+            crudType = "/delete.do";
         } else if (crud === "Insert") {
-            crudType = "/insertProcess.do";
+            crudType = "/Community/insertProcess.do";
         } else if (crud === "View") {
             return null;
         }
+        console.log(crud);
         // crud에 정의된 기능에 따라 controller의 기능으로 url을 넘겨줌
         // 이 때 넘길 값들은 props에 저장되는 각각의 column값에 맞춘
         // 값들 (const {}부분)이 된다.
 
-        let form = new FormData();
-        form.append("articleContent", articleContent);
-        form.append("articleTitle", articleTitle);
+        let form = new FormData();  
+        form.append("Btext", btext);
+        form.append("Btitle", btitle);
+        form.append("Bwriter", bwriter);
+      
         if (crud !== "Insert") {
-            form.append("articleId", articleId);
+            form.append("BNum", bnum);
         }
+        console.log();
         // form에 입력된 data를 props에 저장하는 부분. Insert가 아닌
         // 경우 백에서 넘어온 articleID를 사용해야 하므로 if(!==)문을
         // 사용함
@@ -87,10 +91,16 @@ class InputForm extends Component {
         axios
             .post(crudType, form)
             .then((res) => {
+                console.log(form);
+                console.log(crudType);
                 alert("요청이 처리되었습니다");
                 this.props.history.push("/");
             })
-            .catch((err) => alert("error: " + err.response.data.msg));
+            .catch((err) => {
+                alert("error: " + err.response.data.msg);
+            }
+        );
+            
         // axios의 post method로 props의 data(crudType, form)를 넘기고
         // 성공했을 때(.then) .push('/')로 메인 페이지로 forward해주고
         // 실패했을 때(.catch) error message를 alert
@@ -100,9 +110,9 @@ class InputForm extends Component {
         axios.get("/view.do").then((res) => {
             const data = res.data;
             this.setState({
-                articleId: data.articleId,
-                articleTitle: data.articleTitle,
-                articleContent: data.articleContent,
+                bnum: data.bnum,
+                btitle: data.btitle,
+                btext: data.btext,
             });
         });
     }
@@ -110,10 +120,10 @@ class InputForm extends Component {
     // 출력할 수 있도록 함
 
     createArticleIdTag() {
-        const articleId = this.state.articleId;
+        const bnum = this.state.bnum;
         const crud = this.state.crud;
         if (crud !== "Insert") {
-            return <input type="hidden" value={articleId} readOnly />;
+            return <input type="hidden" value={bnum} readOnly />;
         } else {
             return null;
         }
@@ -122,8 +132,10 @@ class InputForm extends Component {
     // articleId를 readOnly 처리하여 수정할 수 없도록 함
 
     render() {
-        const articleTitle = this.state.articleTitle;
-        const articleContent = this.state.articleContent;
+        const btitle = this.state.btitle;
+        const btext = this.state.btext;
+        const bwriter = this.state.bwriter;
+      
 
         return (
             <>
@@ -132,9 +144,13 @@ class InputForm extends Component {
                 <h3>제목</h3>
                 <input
                     type="text"
-                    value={articleTitle}
-                    onChange={(event) =>
-                        this.setState({ articleTitle: event.target.value })
+                    name={btitle}
+                    value={btitle}
+                    onChange={(event) =>{
+                        
+                        this.setState({ btitle: event.target.value })
+                    }
+                        
                     }
                 />
                 {/* input form에 값이 변경되었을 때에(onChange)
@@ -144,17 +160,35 @@ class InputForm extends Component {
                 <textarea
                     rows="10"
                     cols="20"
-                    value={articleContent}
+                    name={btext}
+                    value={btext}
                     onChange={(event) =>
-                        this.setState({ articleContent: event.target.value })
+                        this.setState({ btext: event.target.value })
                     }
                 ></textarea>
+                
+                <h3>글쓴이</h3>
+                <input
+                    type="text"
+                    name={bwriter}
+                    value={bwriter}
+                    onChange={(event) =>{
+                        this.setState({ bwriter: event.target.value })
+                    }
+                        
+                    }
+                />
+              
+                
                 <br /> <br />
+
                 {this.createCrudBtn()}
                 {/* createCrudBtn() method 선언부 참고 */}
+                
                 <Link to="/">
                     <button type="button">취소</button>
                 </Link>
+                
             </>
         );
     }

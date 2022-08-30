@@ -1,16 +1,9 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
-import InputForm from "../views/InputForm";
-import axios from "axios";
 
-
-
-
-
-
-
-class NboardCUDForm extends Component {
+class CBoardCUD extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -70,19 +63,20 @@ class NboardCUDForm extends Component {
         let crudType = "";
 
         if (crud === "Update") {
-            crudType = "/modify.do";
+            crudType = "/Community/modify.do";
         } else if (crud === "Delete") {
-            crudType = "/delete.do";
+            crudType = "/Community/delete.do";
         } else if (crud === "Insert") {
-            crudType = "/insertProcess.do";
+            crudType = "/Community/insertProcess.do";
         } else if (crud === "View") {
             return null;
         }
+        console.log(crud);
         // crud에 정의된 기능에 따라 controller의 기능으로 url을 넘겨줌
         // 이 때 넘길 값들은 props에 저장되는 각각의 column값에 맞춘
         // 값들 (const {}부분)이 된다.
 
-        let form = new FormData();
+        let form = new FormData();  
         form.append("Btext", btext);
         form.append("Btitle", btitle);
         form.append("Bwriter", bwriter);
@@ -135,71 +129,80 @@ class NboardCUDForm extends Component {
             return null;
         }
     }
+    // Insert를 제외한 기능의 경우 이미 존재하는 값을 받아오기 때문에
+    // articleId를 readOnly 처리하여 수정할 수 없도록 함
 
-
-    render(){
+    render() {
         const btitle = this.state.btitle;
         const btext = this.state.btext;
         const bwriter = this.state.bwriter;
-        return(
+      
+
+        return (
             <div className="container-fluid px-5 my-5">
                 <Card className="px-5 py-5 d-flex formBody">
-                    <h1>게시글 {this.createHeaderName()}</h1>
-                    <h3>제목</h3>
-                    <input
-                        type="text"
-                        name={btitle}
-                        value={btitle}
-                        onChange={(event) =>{
-                            
-                            this.setState({ btitle: event.target.value })
-                        }
-                            
-                        }
-                        className='my-3 form-control inputTitle'
-                />
-                    <h3>내용</h3>
-                    <textarea
-                        rows="10"
-                        cols="20"
-                        name={btext}
-                        value={btext}
-                        className="my-3 form-control inputText"
-                        style={{resize: 'none'}}
-                        onChange={(event) =>
-                            this.setState({ btext: event.target.value })
-                    }
-                ></textarea>
-                    
-                    <h3>글쓴이</h3>
-                    <input
-                        type="text"
-                        name={bwriter}
-                        value={bwriter}
-                        className="my-3 form-control inputRegdate"
-                        onChange={(event) =>{
-                            this.setState({ bwriter: event.target.value })
+                <h1>게시글 {this.createHeaderName()}</h1>
+                {this.createArticleIdTag()}
+                <h3>제목</h3>
+                <input
+                    type="text"
+                    name={btitle}
+                    value={btitle}
+                    className='my-3 form-control inputTitle'
+                    onChange={(event) =>{
+                        
+                        this.setState({ btitle: event.target.value })
                     }
                         
                     }
                 />
-                        <div className="float-end">
-                            {this.createCrudBtn()}
-                        </div>
-                    
+                {/* input form에 값이 변경되었을 때에(onChange)
+                    해당 값을 props에 setState로 저장함 */}
+                <br />
+                <h3>내용</h3>
+                <textarea
+                    rows="10"
+                    cols="20"
+                    name={btext}
+                    value={btext}
+                    className="my-3 form-control inputText"
+                    style={{resize: 'none'}}
+                    onChange={(event) =>
+                        this.setState({ btext: event.target.value })
+                    }
+                ></textarea>
+                
+                <h3>글쓴이</h3>
+                <input
+                    type="text"
+                    name={bwriter}
+                    value={bwriter}
+                    className="my-3 form-control inputRegdate"
+                    onChange={(event) =>{
+                        this.setState({ bwriter: event.target.value })
+                    }
+                        
+                    }
+                />
+              
+                
+                <br /> <br />
+                    <div className="float-end">
+                        {this.createCrudBtn()}
+                    </div>
+                    {/* createCrudBtn() method 선언부 참고 */}
                 </Card>
                 <div className="mt-5">
-                    <Link to={"/Notice"}>
+                    <Link to={"/Community"}>
                         <Button className="btn-info float-end">
-                            리스트
+                            취소
                         </Button>
                     </Link>
                 </div>
+                
             </div>
-        )
+        );
     }
 }
 
-
-
-export default NboardCUDForm;
+export default CBoardCUD;

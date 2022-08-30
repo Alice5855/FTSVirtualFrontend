@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import NboardCUDForm from "./NboardCUDForm";
-import Nboardlist from "./Nboardlist";
+import CBoardCUD from "./CBoardCUD";
+import CBoardList from "./CBoardList";
 import NboardR from "./NboardR";
 import ViewButton from "./ViewButton";
 
 
 
-class Nboard extends Component {
+class CBoard extends Component {
     render(){
         return(
             <div className="container-fluid py-5 px-5" style={{paddingTop:'30%'}}>
                 <div>
                     <h1 className="Title" style={{color: '#25C1FF'}}>
-                        공지사항
+                        커뮤니티
                     </h1>
                 </div>
-                <Route path={"/Notice"} component={Nboardlist} exact={true} />
-                <Route path={"/Notice/Read"} component={NboardR} />
+                <Route path={"/community"} component={CBoardList} exact={true} />
+                <Route path={"/community/Read"} component={NboardR} />
                 {/* *****TEMPORARY LINK***** */}
-                <Route path={"/Notice/:crud"} component={NboardCUDForm}/>
+                <Route path={"/community/CUD"} component={CBoardCUD} />
                 {/* *****TEMPORARY LINK***** */}
 
                 
@@ -27,4 +27,4 @@ class Nboard extends Component {
         )
     }
 }
-export default Nboard;
+export default CBoard;

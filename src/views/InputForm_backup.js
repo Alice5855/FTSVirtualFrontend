@@ -1,23 +1,14 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card } from "reactstrap";
-import InputForm from "../views/InputForm";
-import axios from "axios";
 
-
-
-
-
-
-
-class NboardCUDForm extends Component {
+class InputForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          
-            btitle: "",
-            btext: "",
-           
+            articleId: "",
+            articleTitle: "",
+            articleContent: "",
             crud: props.match.params.crud,
         };
         if (this.state.crud !== "Insert") {
@@ -66,13 +57,14 @@ class NboardCUDForm extends Component {
     // btn에 기능정의를 따로 하지 않음
 
     crud() {
-        const {bnum, btitle, btext, crud, bwriter,bregdate } = this.state;
+        const { articleId, articleTitle, articleContent, crud } = this.state;
+
         let crudType = "";
 
         if (crud === "Update") {
-            crudType = "/modify.do";
+            crudType = "/updateProcess.do";
         } else if (crud === "Delete") {
-            crudType = "/delete.do";
+            crudType = "/deleteProcess.do";
         } else if (crud === "Insert") {
             crudType = "/insertProcess.do";
         } else if (crud === "View") {
@@ -83,14 +75,11 @@ class NboardCUDForm extends Component {
         // 값들 (const {}부분)이 된다.
 
         let form = new FormData();
-        form.append("Btext", btext);
-        form.append("Btitle", btitle);
-        form.append("Bwriter", bwriter);
-      
+        form.append("articleContent", articleContent);
+        form.append("articleTitle", articleTitle);
         if (crud !== "Insert") {
-            form.append("BNum", bnum);
+            form.append("articleId", articleId);
         }
-        console.log();
         // form에 입력된 data를 props에 저장하는 부분. Insert가 아닌
         // 경우 백에서 넘어온 articleID를 사용해야 하므로 if(!==)문을
         // 사용함
@@ -98,16 +87,10 @@ class NboardCUDForm extends Component {
         axios
             .post(crudType, form)
             .then((res) => {
-                console.log(form);
-                console.log(crudType);
                 alert("요청이 처리되었습니다");
                 this.props.history.push("/");
             })
-            .catch((err) => {
-                alert("error: " + err.response.data.msg);
-            }
-        );
-            
+            .catch((err) => alert("error: " + err.response.data.msg));
         // axios의 post method로 props의 data(crudType, form)를 넘기고
         // 성공했을 때(.then) .push('/')로 메인 페이지로 forward해주고
         // 실패했을 때(.catch) error message를 alert
@@ -117,9 +100,9 @@ class NboardCUDForm extends Component {
         axios.get("/view.do").then((res) => {
             const data = res.data;
             this.setState({
-                bnum: data.bnum,
-                btitle: data.btitle,
-                btext: data.btext,
+                articleId: data.articleId,
+                articleTitle: data.articleTitle,
+                articleContent: data.articleContent,
             });
         });
     }
@@ -127,79 +110,54 @@ class NboardCUDForm extends Component {
     // 출력할 수 있도록 함
 
     createArticleIdTag() {
-        const bnum = this.state.bnum;
+        const articleId = this.state.articleId;
         const crud = this.state.crud;
         if (crud !== "Insert") {
-            return <input type="hidden" value={bnum} readOnly />;
+            return <input type="hidden" value={articleId} readOnly />;
         } else {
             return null;
         }
     }
+    // Insert를 제외한 기능의 경우 이미 존재하는 값을 받아오기 때문에
+    // articleId를 readOnly 처리하여 수정할 수 없도록 함
 
+    render() {
+        const articleTitle = this.state.articleTitle;
+        const articleContent = this.state.articleContent;
 
-    render(){
-        const btitle = this.state.btitle;
-        const btext = this.state.btext;
-        const bwriter = this.state.bwriter;
-        return(
-            <div className="container-fluid px-5 my-5">
-                <Card className="px-5 py-5 d-flex formBody">
-                    <h1>게시글 {this.createHeaderName()}</h1>
-                    <h3>제목</h3>
-                    <input
-                        type="text"
-                        name={btitle}
-                        value={btitle}
-                        onChange={(event) =>{
-                            
-                            this.setState({ btitle: event.target.value })
-                        }
-                            
-                        }
-                        className='my-3 form-control inputTitle'
+        return (
+            <>
+                <h1>게시글 {this.createHeaderName()}</h1>
+                {this.createArticleIdTag()}
+                <h3>제목</h3>
+                <input
+                    type="text"
+                    value={articleTitle}
+                    onChange={(event) =>
+                        this.setState({ articleTitle: event.target.value })
+                    }
                 />
-                    <h3>내용</h3>
-                    <textarea
-                        rows="10"
-                        cols="20"
-                        name={btext}
-                        value={btext}
-                        className="my-3 form-control inputText"
-                        style={{resize: 'none'}}
-                        onChange={(event) =>
-                            this.setState({ btext: event.target.value })
+                {/* input form에 값이 변경되었을 때에(onChange)
+                    해당 값을 props에 setState로 저장함 */}
+                <br />
+                <h3>내용</h3>
+                <textarea
+                    rows="10"
+                    cols="20"
+                    value={articleContent}
+                    onChange={(event) =>
+                        this.setState({ articleContent: event.target.value })
                     }
                 ></textarea>
-                    
-                    <h3>글쓴이</h3>
-                    <input
-                        type="text"
-                        name={bwriter}
-                        value={bwriter}
-                        className="my-3 form-control inputRegdate"
-                        onChange={(event) =>{
-                            this.setState({ bwriter: event.target.value })
-                    }
-                        
-                    }
-                />
-                        <div className="float-end">
-                            {this.createCrudBtn()}
-                        </div>
-                    
-                </Card>
-                <div className="mt-5">
-                    <Link to={"/Notice"}>
-                        <Button className="btn-info float-end">
-                            리스트
-                        </Button>
-                    </Link>
-                </div>
-            </div>
-        )
+                <br /> <br />
+                {this.createCrudBtn()}
+                {/* createCrudBtn() method 선언부 참고 */}
+                <Link to="/">
+                    <button type="button">취소</button>
+                </Link>
+            </>
+        );
     }
 }
 
-
-
-export default NboardCUDForm;
+export default InputForm;
