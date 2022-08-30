@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const CBOARD_API_BASE_URL = "/Cboard"
+const CBOARD_API_BASE_URL = "/Community"
 
 class CBoardServices{
 
