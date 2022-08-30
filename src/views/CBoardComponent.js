@@ -5,18 +5,12 @@ import CBoardServices from "./CBoardServices";
 import { Link } from "react-router-dom";
 import CBoardList from "./CBoardList";
 import CboardReadForm from "./CboardReadForm";
-<<<<<<< HEAD
-import CboardCUDForm from "./CboardCUDForm";
-import InputForm from "./InputForm";
-import { render } from "@testing-library/react";
 
-=======
 import CBoardCUD from "./CBoardCUD";
 import InputForm from "./InputForm";
 import { render } from "@testing-library/react";
 
 
->>>>>>> master
 class CBoardComponent extends Component {
     render(){
         
@@ -28,13 +22,8 @@ class CBoardComponent extends Component {
                     </h1>
                 </div>
                 <Route path={"/Community"} component={CBoardList} exact={true} />
-<<<<<<< HEAD
-                <Route path={"/Community/crud:crud"} component={InputForm} />
-                <Route path={"/Community/read/bnum=:bnum"}component={CboardReadForm} />
-=======
                 <Route path={"/Community/crud:crud"} component={CBoardCUD} />
                 <Route path={"/Community/read/bnum=:bnum"} component={CboardReadForm} />
->>>>>>> master
                 
             </div>
         )

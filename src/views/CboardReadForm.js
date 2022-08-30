@@ -19,10 +19,14 @@ class CboardReadForm extends Component {
 
     getBoardData(bnum){
         console.log("겟보드데이터 실행")
-        CBoardServices.getBoardData(bnum).then((res)=>{
+        CBoardServices.getBoard(bnum).then((res)=>{
             this.setState({
-                // 0829 여기까지했음.
+                btitle: res.data.board.btitle,
+                bwriter: res.data.board.bwriter,
+                btext: res.data.board.btext,
+                bregDate: res.data.board.bregDate
             })
+            console.log(this.state);
         })
     }
 
@@ -32,16 +36,28 @@ class CboardReadForm extends Component {
                 <Card className="px-5 py-5">
                     <div>
                         <div>
-                            여기는 readForm이다~!!!!
+                            <p>
+                                Writer
+                            </p>
+                            <div>
+                                {this.state.bwriter}
+                            </div>
                         </div>
                         <div>
                             <p>Title</p>
+                            <div>
+                                {this.state.btitle}
+                            </div>
                         </div>
                         <div>
                             <p>Content</p>
+                                <div>
+                                    {this.state.btext}
+                                </div>
                         </div>
                         <div>
                             <p>RegDate</p>
+                                {this.state.bregDate}
                         </div>
                     </div>
                 </Card>
