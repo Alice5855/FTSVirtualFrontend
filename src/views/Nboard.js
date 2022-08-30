@@ -21,7 +21,6 @@ class Nboard extends Component {
                 {/* *****TEMPORARY LINK***** */}
                 <Route path={"/Notice/:crud"} component={NboardCUDForm}/>
                 {/* *****TEMPORARY LINK***** */}
-
                 
             </div>
         )

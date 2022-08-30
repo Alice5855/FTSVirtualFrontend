@@ -1,23 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
-import InputForm from "../views/InputForm";
 import axios from "axios";
-
-
-
-
-
-
 
 class NboardCUDForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          
+            
             btitle: "",
             btext: "",
-           
+            
             crud: props.match.params.crud,
         };
         if (this.state.crud !== "Insert") {
@@ -86,7 +79,7 @@ class NboardCUDForm extends Component {
         form.append("Btext", btext);
         form.append("Btitle", btitle);
         form.append("Bwriter", bwriter);
-      
+        
         if (crud !== "Insert") {
             form.append("BNum", bnum);
         }

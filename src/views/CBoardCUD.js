@@ -7,10 +7,10 @@ class CBoardCUD extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          
+            
             btitle: "",
             btext: "",
-           
+            
             crud: props.match.params.crud,
         };
         if (this.state.crud !== "Insert") {
@@ -80,7 +80,7 @@ class CBoardCUD extends Component {
         form.append("Btext", btext);
         form.append("Btitle", btitle);
         form.append("Bwriter", bwriter);
-      
+        
         if (crud !== "Insert") {
             form.append("BNum", bnum);
         }
@@ -136,7 +136,6 @@ class CBoardCUD extends Component {
         const btitle = this.state.btitle;
         const btext = this.state.btext;
         const bwriter = this.state.bwriter;
-      
 
         return (
             <div className="container-fluid px-5 my-5">
@@ -184,7 +183,7 @@ class CBoardCUD extends Component {
                         
                     }
                 />
-              
+
                 
                 <br /> <br />
                     <div className="float-end">
