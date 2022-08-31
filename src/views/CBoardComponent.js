@@ -7,7 +7,7 @@ import CBoardList from "./CBoardList";
 import CboardReadForm from "./CboardReadForm";
 
 import CBoardCUD from "./CBoardCUD";
-import InputForm from "./InputForm";
+
 import { render } from "@testing-library/react";
 
 

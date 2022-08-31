@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Main from "./views/Main";
 import Footer from "./views/Footer";
 import Nboard from "./views/Nboard";
+import QBoardComponent from "./views/QBoardComponent";
 import CBoardComponent from "./views/CBoardComponent";
 import About from "./views/About";
 
@@ -19,6 +20,7 @@ const App = () => {
       <Route path = "/Notice" component={Nboard} />
       <Route path = "/Community" component={CBoardComponent} />
       <Route path={'/About'} component={About} />
+      <Route path="/QnA" component={QBoardComponent} />
       <Footer />
     </>
   );
