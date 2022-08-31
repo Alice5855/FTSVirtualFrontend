@@ -21,14 +21,11 @@ class CboardReadForm extends Component {
             bnum: props.match.params.bnum,
             bregDate: ""
         };
-       
-        
-       
 
         console.log(this.state.bnum);
-        this.getBoardData(this.state.bnum); // 이거 실행 안되면 바인드시켜보기
+        this.getBoardData(this.state.bnum);
     }
-   
+    
 
     getBoardData(bnum){
         console.log("겟보드데이터 실행")
@@ -45,37 +42,37 @@ class CboardReadForm extends Component {
         
     }
 
-  
-
     render(){
-       
+        
         return(
             <div className="container-fluid readBody px-5 my-5">
-                <Card className="px-5 py-5">
+                <Card className="d-flex px-5 py-5">
                     <div>
                         <div>
-                            <p>
-                                Writer
-                            </p>
-                            <div>
-                                {this.state.bwriter}
-                            </div>
+                            <h2 className="py-3">
+                                    {this.state.btitle}
+                            </h2>
                         </div>
                         <div>
-                            <p>Title</p>
                             <div>
-                                {this.state.btitle}
-                            </div>
-                        </div>
-                        <div>
-                            <p>Content</p>
-                                <div>
-                                    {this.state.btext}
+                                <div className="py-3 pe-4">
+                                    <small className="text-muted float-end">
+                                        {this.state.bwriter}
+                                    </small>
                                 </div>
+                            </div>
                         </div>
                         <div>
-                            <p>RegDate</p>
+                            <div>
+                                <p className="px-4 py-3">
+                                    {this.state.btext}
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <small className="text-muted float-end py-3">
                                 {this.state.bregDate}
+                            </small>
                         </div>
                     </div>
                 </Card>
@@ -85,14 +82,22 @@ class CboardReadForm extends Component {
                             리스트
                         </Button>
                     </Link>
-                
-                   
-                        <Link to={"/Community/crudUpdate"}>
-                                
-                                    수정하기
-                                
-                        </Link>
-                
+
+                        <Button onClick={() => 
+                            this.props.history.push({
+                                pathname: "/Community/crudUpdate",
+                                state:{
+                                    bnum: this.state.bnum,
+                                    btitle: this.state.btitle,
+                                    bwriter: this.state.bwriter,
+                                    btext: this.state.btext,
+                                    bregDate: this.state.bregDate
+                                }
+                            })
+                        }>
+                            수정하기
+                        </Button>
+
                 </div>
             </div>
         )

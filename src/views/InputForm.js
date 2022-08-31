@@ -79,7 +79,7 @@ class InputForm extends Component {
         form.append("Btext", btext);
         form.append("Btitle", btitle);
         form.append("Bwriter", bwriter);
-      
+        
         if (crud !== "Insert") {
             form.append("BNum", bnum);
         }

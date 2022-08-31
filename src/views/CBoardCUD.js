@@ -11,10 +11,11 @@ class CBoardCUD extends Component {
         super(props);
         this.state = {
             
-            bnum: "",
-            btitle: "",
-            btext: "",
-           
+            bnum: this.props.location.state.bnum,
+            btitle: this.props.location.state.btitle,
+            btext: this.props.location.state.btext,
+            bwriter: this.props.location.state.bwriter,
+            
             crud: props.match.params.crud,
         };
         
@@ -25,13 +26,11 @@ class CBoardCUD extends Component {
             })
         });
         console.log(this.state);
-       
+        
         if (this.state.crud !== "Insert") {
             this.getData();
         }
 
-
-        
     }
     /*
     props에 VO에 저장된 column명으로 data를 저장할 수 있도록 함
@@ -96,7 +95,7 @@ class CBoardCUD extends Component {
         form.append("Btext", btext);
         form.append("Btitle", btitle);
         form.append("Bwriter", bwriter);
-      
+        
         if (crud !== "Insert") {
             form.append("BNum", bnum);
         }
@@ -149,7 +148,7 @@ class CBoardCUD extends Component {
         }
         
 
-       
+        
             
         // axios의 post method로 props의 data(crudType, form)를 넘기고
         // 성공했을 때(.then) .push('/')로 메인 페이지로 forward해주고
@@ -167,7 +166,7 @@ class CBoardCUD extends Component {
         });
     }
 
-   
+    
     // view에서 넘어올 때에는 controller에서 넘어온 data를 props에 붙여
     // 출력할 수 있도록 함
 
@@ -187,7 +186,7 @@ class CBoardCUD extends Component {
         const btitle = this.state.btitle;
         const btext = this.state.btext;
         const bwriter = this.state.bwriter;
-      
+        
 
         return (
             <div className="container-fluid px-5 my-5">

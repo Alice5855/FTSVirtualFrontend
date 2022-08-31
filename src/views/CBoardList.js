@@ -76,7 +76,7 @@ class CBoardList extends Component{
             });
         });
     }
-   
+    
     render(){
         return(
             <>
@@ -91,7 +91,6 @@ class CBoardList extends Component{
                                 board =>
                 <div key={board.bnum} >
                     <Link to={`/Community/view/bnum=${board.bnum}`} className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                        {/* *****TEMPORARY LINK***** */}
                         <div className="d-flex gap-2 w-100 justify-content-between">
                             <div>
                                 <h6 className="mb-0">{board.bwriter}</h6>
@@ -102,7 +101,7 @@ class CBoardList extends Component{
                     </Link>
                 </div>
                 )}
-               <div className="d-flex justify-content-center mt-3">
+                <div className="d-flex justify-content-center mt-3">
                     <Pagination size="md" aria-label="Page navigation">
                         {this.createPageBtn(this.state.currentPage, this.state.maxPage)}
                     </Pagination>
