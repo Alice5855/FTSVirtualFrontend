@@ -89,7 +89,9 @@ class Header extends Component {
                                 </DropdownToggle>
                                 <DropdownMenu end style={{right: '0%'}}>
                                 <DropdownItem>
+                                <Link to="/Login" id="navmenu" className="nav-link">
                                     Sign in
+                                </Link>
                                 </DropdownItem>
                                 <DropdownItem>
                                     Sign up
