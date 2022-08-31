@@ -2,13 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 import CBoardServices from "./CBoardServices";
-import CBoardCUD from "./CBoardCUD";
-
-const {Provider, Consumer} = React.createContext();
-
-export {Consumer};
-
-
 
 class CboardReadForm extends Component {
     constructor(props){
