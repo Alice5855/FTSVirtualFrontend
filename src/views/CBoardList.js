@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { Component } from "react";
 import CBoardServices from "./CBoardServices";
 import { Link } from "react-router-dom";
+import { Button, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+
 
 class CBoardList extends Component{
     constructor(props){
@@ -58,9 +60,9 @@ class CBoardList extends Component{
 
         return( // pageNum 크기가 정상 범주인 경우 출력
             <>
-                <button 
-                    onClick={()=> this.getBoardListData(pageNum)}>{screenNum}
-                </button>
+                <PaginationItem>
+                    <PaginationLink onClick={() => this.getBoardListData(pageNum)}>{screenNum}</PaginationLink>
+                </PaginationItem>
             </>
         )
     }
@@ -74,49 +76,39 @@ class CBoardList extends Component{
             });
         });
     }
-
+   
     render(){
         return(
-            <div>
-                <table className="table table-hover table-dark">
-                    <thead>
-                        <tr>
-                            <th>글 번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>내용</th>
-                            <th>작성일</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
+            <>
+            <Link to="/Community/crudInsert">
+                <Button className="btn-sm float-end">
+                    새 글 쓰기
+                </Button>
+            </Link>
+            <div id="boardbody" className="list-group w-auto my-5">
+                {
                             this.state.List.map(
                                 board =>
-                                    <tr key={board.bnum}>
-                                            <td>{board.bnum}</td>
-                                            <td>
-                                                <Link to={`/Community/read/bnum=${board.bnum}`}>
-                                                    {board.btitle}
-                                                </Link>
-                                            </td>
-                                            <td>{board.bwriter}</td>
-                                            <td>{board.btext}</td>
-                                            <td>{board.bregDate}</td>
-                                    </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
-                <div className="pagingBtn">
-                    {this.createPageBtn(this.state.currentPage, this.state.maxPage)}
-                </div>
-
-                <div className="btn_moveWriteMove">
-                    <Link to="/Community/crudInsert">
-                        <button>글쓰기</button>
+                <div key={board.bnum} >
+                    <Link to={`/Community/view/bnum=${board.bnum}`} className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                        {/* *****TEMPORARY LINK***** */}
+                        <div className="d-flex gap-2 w-100 justify-content-between">
+                            <div>
+                                <h6 className="mb-0">{board.bwriter}</h6>
+                                <p className="mb-0 opacity-75 ms-5">{board.btitle}</p>
+                            </div>
+                            <small className="opacity-50 text-nowrap">{board.bregDate}</small>
+                        </div>
                     </Link>
                 </div>
-            </div>
+                )}
+               <div className="d-flex justify-content-center mt-3">
+                    <Pagination size="md" aria-label="Page navigation">
+                        {this.createPageBtn(this.state.currentPage, this.state.maxPage)}
+                    </Pagination>
+                </div>
+                </div>
+            </>
         );
     };
 };

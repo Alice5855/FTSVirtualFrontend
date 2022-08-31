@@ -11,6 +11,8 @@ import InputForm from "./InputForm";
 import { render } from "@testing-library/react";
 
 
+
+
 class CBoardComponent extends Component {
     render(){
         
@@ -18,12 +20,13 @@ class CBoardComponent extends Component {
             <div className="container-fluid py-5 px-5" style={{paddingTop:'30%'}}>
                 <div>
                     <h1 className="Title" style={{color: '#25C1FF'}}>
-                        공지사항
+                        커뮤니티
                     </h1>
                 </div>
                 <Route path={"/Community"} component={CBoardList} exact={true} />
                 <Route path={"/Community/crud:crud"} component={CBoardCUD} />
-                <Route path={"/Community/read/bnum=:bnum"} component={CboardReadForm} />
+                <Route path={"/Community/view/bnum=:bnum"} component={CboardReadForm} />
+               
                 
             </div>
         )
