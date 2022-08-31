@@ -25,7 +25,6 @@ class CboardReadForm extends Component {
         console.log(this.state.bnum);
         this.getBoardData(this.state.bnum);
     }
-    
 
     getBoardData(bnum){
         console.log("겟보드데이터 실행")
@@ -83,7 +82,7 @@ class CboardReadForm extends Component {
                         </Button>
                     </Link>
 
-                        <Button onClick={() => 
+                        <Button className="btn-md btn-warning me-3" onClick={() => 
                             this.props.history.push({
                                 pathname: "/Community/crudUpdate",
                                 state:{
@@ -95,9 +94,23 @@ class CboardReadForm extends Component {
                                 }
                             })
                         }>
-                            수정하기
+                            수정
                         </Button>
 
+                        <Button className="btn-md btn-danger" onClick={() => 
+                            this.props.history.push({
+                                pathname: "/Community/crudDelete",
+                                state:{
+                                    bnum: this.state.bnum,
+                                    btitle: this.state.btitle,
+                                    bwriter: this.state.bwriter,
+                                    btext: this.state.btext,
+                                    bregDate: this.state.bregDate
+                                }
+                            })
+                        }>
+                            삭제
+                        </Button>
                 </div>
             </div>
         )

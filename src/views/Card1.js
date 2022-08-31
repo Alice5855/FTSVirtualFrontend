@@ -2,8 +2,8 @@ import React from "react";
 
 const Card1 = () => {
     return(
-            <div className="px-3 py-5 my-5 text-center rounded-5" style={{backgroundColor: "#25C1FF"}}>
-                <h1 className="display-5 fw-bold">Meet us!</h1>
+            <div className="px-3 py-5 my-5 text-center rounded-5" style={{backgroundColor: "#5EDDEE"}}>
+                <h1 className="display-5 fw-bold">Meet us at Aniplus!</h1>
                 <div className="col-lg-12 mx-auto">
                     <p className="my-5">
                         <a href="https://www.aniplustv.com/storeCollaboCafe" target={'_blank'} className="cBanner" rel="noreferrer">

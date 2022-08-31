@@ -10,27 +10,39 @@ class CBoardCUD extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
-            bnum: this.props.location.state.bnum,
-            btitle: this.props.location.state.btitle,
-            btext: this.props.location.state.btext,
-            bwriter: this.props.location.state.bwriter,
-            
-            crud: props.match.params.crud,
+            bnum : "",
+            btitle: "",
+            btext: "",
+            bwriter: "",
+            crud: props.match.params.crud
         };
-        
-        CBoardServices.getBoard(this.state.bnum).then((res)=>{
-            this.setState({
-                btitle : res.data.board.btitle,
-                btext: res.data.board.btext
-            })
-        });
+
         console.log(this.state);
         
-        if (this.state.crud !== "Insert") {
-            this.getData();
+        if(this.state.crud === "Insert"){
+            this.state = {
+                btitle: "",
+                btext: "",
+                bwriter:"",
+                crud:"Insert"
+            }
+        } else if (this.state.crud === "Update") {
+            this.state = {
+                bnum: this.props.location.state.bnum,
+                btitle: this.props.location.state.btitle,
+                btext: this.props.location.state.btext,
+                bwriter: this.props.location.state.bwriter,
+                crud: "Update"
+            };
+        } else if(this.state.crud === "Delete"){
+            this.state = {
+                bnum: this.props.location.state.bnum,
+                btitle: this.props.location.state.btitle,
+                btext: this.props.location.state.btext,
+                bwriter: this.props.location.state.bwriter,
+                crud: "Delete"
+            };
         }
-
     }
     /*
     props에 VO에 저장된 column명으로 data를 저장할 수 있도록 함
@@ -65,7 +77,7 @@ class CBoardCUD extends Component {
             const crudName =
             crud === "Update" ? "수정" : crud === "Insert" ? "등록" : "삭제";
             return (
-            <button onClick={() => this.crud()}>게시글 {crudName}</button>
+            <button className="btn btn-md btn-success" onClick={() => this.crud()}>{crudName}</button>
             );
         }
     }
@@ -76,7 +88,7 @@ class CBoardCUD extends Component {
     crud() {
         const {bnum, btitle, btext, crud, bwriter,bregdate } = this.state;
         let crudType = "";
-
+        console.log("bnum : " + bnum);
         if (crud === "Update") {
             crudType = "/Community/modify.do";
         } else if (crud === "Delete") {
@@ -115,11 +127,10 @@ class CBoardCUD extends Component {
             })
             .catch((err) => {
                 alert("error: " + err.response.data.msg);
-            }
-        );
+            });
         }else if(crud ==="Update"){
             axios
-            .put(crudType, form)
+            .post(crudType, form)
             
             .then((res) => {
                 console.log(form);
@@ -129,11 +140,11 @@ class CBoardCUD extends Component {
             })
             .catch((err) => {
                 alert("error: " + err.response.data.msg);
-            }
-        );
-        }else if(crud ==="Delete"){
+            });
+        };
+        if(crud ==="Delete"){
             axios
-            .delete(crudType, form)
+            .post(crudType, form)
             
             .then((res) => {
                 console.log(form);
@@ -143,13 +154,9 @@ class CBoardCUD extends Component {
             })
             .catch((err) => {
                 alert("error: " + err.response.data.msg);
-            }
-        );
-        }
+            });
+        };
         
-
-        
-            
         // axios의 post method로 props의 data(crudType, form)를 넘기고
         // 성공했을 때(.then) .push('/')로 메인 페이지로 forward해주고
         // 실패했을 때(.catch) error message를 alert
@@ -235,7 +242,7 @@ class CBoardCUD extends Component {
                         
                     }
                 />
-              
+
                 
                 <br /> <br />
                     <div className="float-end">

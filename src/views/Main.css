@@ -47,6 +47,13 @@ body{
         height: 150% !important;
         top: -25%;
     }
+    .logoImg {
+        width: !important;
+    }
+    .secretLink {
+        width: ;
+        height: ;
+    }
 }
 
 @media screen and (max-width: 425px) {
@@ -70,5 +77,12 @@ body{
     }
     .linkIcon img {
         width: 50px;
+    }
+    .logoImg {
+        width: !important;
+    }
+    .secretLink {
+        width: ;
+        height: ;
     }
 }
