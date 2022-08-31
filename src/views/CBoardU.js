@@ -6,16 +6,17 @@ import CboardReadForm from "./CboardReadForm";
 import CBoardServices from "./CBoardServices";
 
 
-class CBoardCUD extends Component {
+class CBoardU extends Component {
     constructor(props) {
         super(props);
         this.state = {
             
-            bnum: "",
+            bnum: props.match.params.bnum,
             btitle: "",
             btext: "",
+            bwriter:"",
            
-            crud: props.match.params.crud,
+            crud: "Update",
         };
         
         CBoardServices.getBoard(this.state.bnum).then((res)=>{
@@ -100,7 +101,7 @@ class CBoardCUD extends Component {
         if (crud !== "Insert") {
             form.append("BNum", bnum);
         }
-        console.log();
+        console.log("이거 맞냐?" + bnum);
         // form에 입력된 data를 props에 저장하는 부분. Insert가 아닌
         // 경우 백에서 넘어온 articleID를 사용해야 하므로 if(!==)문을
         // 사용함
@@ -120,7 +121,7 @@ class CBoardCUD extends Component {
         );
         }else if(crud ==="Update"){
             axios
-            .put(crudType, form)
+            .post(crudType, form)
             
             .then((res) => {
                 console.log(form);
@@ -257,4 +258,4 @@ class CBoardCUD extends Component {
     }
 }
 
-export default CBoardCUD;
+export default CBoardU;

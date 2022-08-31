@@ -5,7 +5,9 @@ import CBoardServices from "./CBoardServices";
 import { Link } from "react-router-dom";
 import CBoardList from "./CBoardList";
 import CboardReadForm from "./CboardReadForm";
-import CBoardCUD from "./CBoardCUD";
+import CBoardC from "./CBoardC";
+import CBoardU from "./CBoardU";
+import CBoardD from "./CBoardD";
 import InputForm from "./InputForm";
 import { render } from "@testing-library/react";
 
@@ -23,7 +25,9 @@ class CBoardComponent extends Component {
                     </h1>
                 </div>
                 <Route path={"/Community"} component={CBoardList} exact={true} />
-                <Route path={"/Community/crud:crud"} component={CBoardCUD} />
+                <Route path={"/Community/crudInsert"} component={CBoardC} />
+                <Route path={"/Community/crudUpdate/bnum=:bnum"} component={CBoardU} />
+                <Route path={"/Community/crudDelete/bnum=:bnum"} component={CBoardD} />
                 <Route path={"/Community/view/bnum=:bnum"} component={CboardReadForm} />
                
                 

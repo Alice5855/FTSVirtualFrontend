@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 import CBoardServices from "./CBoardServices";
-import CBoardCUD from "./CBoardCUD";
+import CBoardC from "./CBoardC";
 
 const {Provider, Consumer} = React.createContext();
 
@@ -86,12 +86,12 @@ class CboardReadForm extends Component {
                         </Button>
                     </Link>
                 
-                   
-                        <Link to={"/Community/crudUpdate"}>
+                    
+                    <Link to={`/Community/crudUpdate/bnum=${this.state.bnum}`}>
                                 
                                     수정하기
                                 
-                        </Link>
+                    </Link>
                 
                 </div>
             </div>
