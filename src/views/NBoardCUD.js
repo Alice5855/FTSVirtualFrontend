@@ -1,19 +1,40 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Button, Card } from "reactstrap";
 
-class InputForm extends Component {
+class NBoardCUD extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          
+            bnum : "",
             btitle: "",
             btext: "",
-           
-            crud: props.match.params.crud,
+            crud: props.match.params.crud
         };
-        if (this.state.crud !== "Insert") {
-            this.getData();
+
+        console.log(this.state);
+        
+        if(this.state.crud === "Insert"){
+            this.state = {
+                btitle: "",
+                btext: "",
+                crud:"Insert"
+            }
+        } else if (this.state.crud === "Update") {
+            this.state = {
+                bnum: this.props.location.state.bnum,
+                btitle: this.props.location.state.btitle,
+                btext: this.props.location.state.btext,
+                crud: "Update"
+            };
+        } else if(this.state.crud === "Delete"){
+            this.state = {
+                bnum: this.props.location.state.bnum,
+                btitle: this.props.location.state.btitle,
+                btext: this.props.location.state.btext,
+                crud: "Delete"
+            };
         }
     }
     /*
@@ -43,13 +64,25 @@ class InputForm extends Component {
 
     createCrudBtn() {
         const crud = this.state.crud;
+
+        let btnColor = "";
+        if (crud === "Insert") {
+            btnColor = "btn btn-md btn-success"
+        } else if (crud === "Update") {
+            btnColor = "btn btn-md btn-warning"
+        } else if (crud === "Delete") {
+            btnColor = "btn btn-md btn-danger"
+        } else {
+            btnColor = "btn btn-md"
+        }
+
         if (crud === "View") {
             return null;
         } else {
             const crudName =
             crud === "Update" ? "수정" : crud === "Insert" ? "등록" : "삭제";
             return (
-            <button onClick={() => this.crud()}>게시글 {crudName}</button>
+                <button className={btnColor} onClick={() => this.crud()}>{crudName}</button>
             );
         }
     }
@@ -58,15 +91,15 @@ class InputForm extends Component {
     // btn에 기능정의를 따로 하지 않음
 
     crud() {
-        const {bnum, btitle, btext, crud, bwriter,bregdate } = this.state;
+        const {bnum, btitle, btext, crud, bregdate } = this.state;
         let crudType = "";
-
+        console.log("bnum : " + bnum);
         if (crud === "Update") {
-            crudType = "/modify.do";
+            crudType = "/Notice/modify.do";
         } else if (crud === "Delete") {
-            crudType = "/delete.do";
+            crudType = "/Notice/delete.do";
         } else if (crud === "Insert") {
-            crudType = "/Community/insertProcess.do";
+            crudType = "/Notice/insertProcess.do";
         } else if (crud === "View") {
             return null;
         }
@@ -78,7 +111,6 @@ class InputForm extends Component {
         let form = new FormData();  
         form.append("Btext", btext);
         form.append("Btitle", btitle);
-        form.append("Bwriter", bwriter);
         
         if (crud !== "Insert") {
             form.append("BNum", bnum);
@@ -87,27 +119,55 @@ class InputForm extends Component {
         // form에 입력된 data를 props에 저장하는 부분. Insert가 아닌
         // 경우 백에서 넘어온 articleID를 사용해야 하므로 if(!==)문을
         // 사용함
-
-        axios
+        if (crud === "Insert") {
+            axios
             .post(crudType, form)
+            
             .then((res) => {
                 console.log(form);
                 console.log(crudType);
                 alert("요청이 처리되었습니다");
-                this.props.history.push("/");
+                this.props.history.push("/Notice");
             })
             .catch((err) => {
                 alert("error: " + err.response.data.msg);
-            }
-        );
+            });
+        }else if(crud ==="Update"){
+            axios
+            .post(crudType, form)
             
+            .then((res) => {
+                console.log(form);
+                console.log(crudType);
+                alert("요청이 처리되었습니다");
+                this.props.history.push("/Notice");
+            })
+            .catch((err) => {
+                alert("error: " + err.response.data.msg);
+            });
+        };
+        if(crud ==="Delete"){
+            axios
+            .post(crudType, form)
+            
+            .then((res) => {
+                console.log(form);
+                console.log(crudType);
+                alert("요청이 처리되었습니다");
+                this.props.history.push("/Notice");
+            })
+            .catch((err) => {
+                alert("error: " + err.response.data.msg);
+            });
+        };
+        
         // axios의 post method로 props의 data(crudType, form)를 넘기고
         // 성공했을 때(.then) .push('/')로 메인 페이지로 forward해주고
         // 실패했을 때(.catch) error message를 alert
     }
 
     getData() {
-        axios.get("/view.do").then((res) => {
+        axios.get("/Notice/view.do?=").then((res) => {
             const data = res.data;
             this.setState({
                 bnum: data.bnum,
@@ -116,6 +176,8 @@ class InputForm extends Component {
             });
         });
     }
+
+    
     // view에서 넘어올 때에는 controller에서 넘어온 data를 props에 붙여
     // 출력할 수 있도록 함
 
@@ -134,11 +196,12 @@ class InputForm extends Component {
     render() {
         const btitle = this.state.btitle;
         const btext = this.state.btext;
-        const bwriter = this.state.bwriter;
-      
+        
 
         return (
-            <>
+            <div className="container-fluid px-5 my-5">
+                <Card className="px-5 py-5 d-flex formBody">
+                {contextValue => <h3>{`contextValueva : ${contextValue}`}</h3>}
                 <h1>게시글 {this.createHeaderName()}</h1>
                 {this.createArticleIdTag()}
                 <h3>제목</h3>
@@ -146,6 +209,7 @@ class InputForm extends Component {
                     type="text"
                     name={btitle}
                     value={btitle}
+                    className='my-3 form-control inputTitle'
                     onChange={(event) =>{
                         
                         this.setState({ btitle: event.target.value })
@@ -162,36 +226,31 @@ class InputForm extends Component {
                     cols="20"
                     name={btext}
                     value={btext}
+                    className="my-3 form-control inputText"
+                    style={{resize: 'none'}}
                     onChange={(event) =>
                         this.setState({ btext: event.target.value })
                     }
                 ></textarea>
-                
-                <h3>글쓴이</h3>
-                <input
-                    type="text"
-                    name={bwriter}
-                    value={bwriter}
-                    onChange={(event) =>{
-                        this.setState({ bwriter: event.target.value })
-                    }
-                        
-                    }
-                />
-              
+
                 
                 <br /> <br />
-
-                {this.createCrudBtn()}
-                {/* createCrudBtn() method 선언부 참고 */}
+                    <div className="float-end">
+                        {this.createCrudBtn()}
+                    </div>
+                    {/* createCrudBtn() method 선언부 참고 */}
+                </Card>
+                <div className="mt-5">
+                    <Link to={"/Notice"}>
+                        <Button className="btn-info float-end">
+                            취소
+                        </Button>
+                    </Link>
+                </div>
                 
-                <Link to="/">
-                    <button type="button">취소</button>
-                </Link>
-                
-            </>
+            </div>
         );
     }
 }
 
-export default InputForm;
+export default NBoardCUD;

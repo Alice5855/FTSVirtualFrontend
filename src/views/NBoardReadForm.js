@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
-import CBoardServices from "./CBoardServices";
+import NBoardServices from "./NBoardServices";
 
-class CboardReadForm extends Component {
+class NBoardReadForm extends Component {
     constructor(props){
         super(props);
         this.state = {
             bnum : "",
             btitle: "",
-            bwriter: "",
             btext: "",
             bnum: props.match.params.bnum,
             bregDate: ""
@@ -21,11 +20,10 @@ class CboardReadForm extends Component {
 
     getBoardData(bnum){
         console.log("겟보드데이터 실행")
-        CBoardServices.getBoard(bnum).then((res)=>{
+        NBoardServices.getBoard(bnum).then((res)=>{
             this.setState({
                 bnum:res.data.board.bnum,
                 btitle: res.data.board.btitle,
-                bwriter: res.data.board.bwriter,
                 btext: res.data.board.btext,
                 bregDate: res.data.board.bregDate
             })
@@ -47,15 +45,6 @@ class CboardReadForm extends Component {
                         </div>
                         <div>
                             <div>
-                                <div className="py-3 pe-4">
-                                    <small className="text-muted float-end">
-                                        {this.state.bwriter}
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
                                 <p className="px-4 py-3">
                                     {this.state.btext}
                                 </p>
@@ -69,7 +58,7 @@ class CboardReadForm extends Component {
                     </div>
                 </Card>
                 <div className="mt-5">
-                    <Link to={"/Community"}>
+                    <Link to={"/Notice"}>
                         <Button className="btn-info float-end">
                             리스트
                         </Button>
@@ -77,11 +66,10 @@ class CboardReadForm extends Component {
 
                         <Button className="btn-md btn-warning me-3" onClick={() => 
                             this.props.history.push({
-                                pathname: "/Community/crudUpdate",
+                                pathname: "/Notice/crudUpdate",
                                 state:{
                                     bnum: this.state.bnum,
                                     btitle: this.state.btitle,
-                                    bwriter: this.state.bwriter,
                                     btext: this.state.btext,
                                     bregDate: this.state.bregDate
                                 }
@@ -92,11 +80,10 @@ class CboardReadForm extends Component {
 
                         <Button className="btn-md btn-danger" onClick={() => 
                             this.props.history.push({
-                                pathname: "/Community/crudDelete",
+                                pathname: "/Notice/crudDelete",
                                 state:{
                                     bnum: this.state.bnum,
                                     btitle: this.state.btitle,
-                                    bwriter: this.state.bwriter,
                                     btext: this.state.btext,
                                     bregDate: this.state.bregDate
                                 }
@@ -109,4 +96,4 @@ class CboardReadForm extends Component {
         )
     }
 }
-export default CboardReadForm;
+export default NBoardReadForm;

@@ -32,7 +32,10 @@ class Header extends Component {
     }
     toggle() {
         this.setState({
-            isOpen: !this.state.isOpen
+            isOpen: !this.state.isOpen,
+            collapse1: false,
+            collapse2: false,
+            collapse3: false
         });
     }
     collapse1() {
@@ -69,16 +72,16 @@ class Header extends Component {
                             <Nav className="ms-auto" navbar>
                             <NavItem>
                                 <NavLink id="navmenu" onClick={this.collapse1}>
-                                    Toggle
+                                    Boards
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink id="navmenu" onClick={this.collapse2}>
-                                    Toggle
+                                    About
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink id="navmenu" onClick={this.collapse3}>
+                                <NavLink id="navmenu" onClick={this.collapse3} style={{display: 'none'}}>
                                     Toggle
                                 </NavLink>
                             </NavItem>
@@ -107,29 +110,29 @@ class Header extends Component {
                     <Collapse isOpen={this.state.collapse1}>
                         <div className='py-2 subHeader'>
                             <div className="subMenu1">
-                                <Link to="/Notice" id="navmenu" className="nav-link">
+                                <Link to={"/Notice"} id="navmenu" className="nav-link">
                                     Notice
                                 </Link>
-                                <Link to="/Community"  id="navmenu" className="nav-link">
-                                    community
+                                <Link to={"/Community"} id="navmenu" className="nav-link">
+                                    Community
                                 </Link>
-                                <a id="navmenu" className="nav-link">
-                                    subMenu
-                                </a>
+                                <Link to={"/QnA"} id="navmenu" className="nav-link">
+                                    Q&A
+                                </Link>
                             </div>
                         </div>
                     </Collapse>
                     <Collapse isOpen={this.state.collapse2}>
                         <div className='py-2 subHeader'>
                             <div className="subMenu2">
+                                <Link to={"/About"} id="navmenu" className="nav-link">
+                                    About us
+                                </Link>
                                 <a id="navmenu" className="nav-link">
-                                    subMenu
+                                    Questions
                                 </a>
                                 <a id="navmenu" className="nav-link">
-                                    subMenu
-                                </a>
-                                <a id="navmenu" className="nav-link">
-                                    subMenu
+                                    Contact
                                 </a>
                             </div>
                         </div>
