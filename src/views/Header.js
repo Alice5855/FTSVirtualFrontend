@@ -111,7 +111,7 @@ class Header extends Component {
                                     Notice
                                 </Link>
                                 <Link to="/Community"  id="navmenu" className="nav-link">
-                                    community
+                                    Community
                                 </Link>
                                 <a id="navmenu" className="nav-link">
                                     subMenu

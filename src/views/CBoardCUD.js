@@ -2,20 +2,36 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
+import CboardReadForm from "./CboardReadForm";
+import CBoardServices from "./CBoardServices";
+
 
 class CBoardCUD extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          
+            
+            bnum: "",
             btitle: "",
             btext: "",
            
             crud: props.match.params.crud,
         };
+        
+        CBoardServices.getBoard(this.state.bnum).then((res)=>{
+            this.setState({
+                btitle : res.data.board.btitle,
+                btext: res.data.board.btext
+            })
+        });
+        console.log(this.state);
+       
         if (this.state.crud !== "Insert") {
             this.getData();
         }
+
+
+        
     }
     /*
     props에 VO에 저장된 column명으로 data를 저장할 수 있도록 함
@@ -88,19 +104,52 @@ class CBoardCUD extends Component {
         // form에 입력된 data를 props에 저장하는 부분. Insert가 아닌
         // 경우 백에서 넘어온 articleID를 사용해야 하므로 if(!==)문을
         // 사용함
-
-        axios
+        if (crud === "Insert") {
+            axios
             .post(crudType, form)
+            
             .then((res) => {
                 console.log(form);
                 console.log(crudType);
                 alert("요청이 처리되었습니다");
-                this.props.history.push("/");
+                this.props.history.push("/Community");
             })
             .catch((err) => {
                 alert("error: " + err.response.data.msg);
             }
         );
+        }else if(crud ==="Update"){
+            axios
+            .put(crudType, form)
+            
+            .then((res) => {
+                console.log(form);
+                console.log(crudType);
+                alert("요청이 처리되었습니다");
+                this.props.history.push("/Community");
+            })
+            .catch((err) => {
+                alert("error: " + err.response.data.msg);
+            }
+        );
+        }else if(crud ==="Delete"){
+            axios
+            .delete(crudType, form)
+            
+            .then((res) => {
+                console.log(form);
+                console.log(crudType);
+                alert("요청이 처리되었습니다");
+                this.props.history.push("/Community");
+            })
+            .catch((err) => {
+                alert("error: " + err.response.data.msg);
+            }
+        );
+        }
+        
+
+       
             
         // axios의 post method로 props의 data(crudType, form)를 넘기고
         // 성공했을 때(.then) .push('/')로 메인 페이지로 forward해주고
@@ -108,7 +157,7 @@ class CBoardCUD extends Component {
     }
 
     getData() {
-        axios.get("/view.do").then((res) => {
+        axios.get("/Community/view.do?=").then((res) => {
             const data = res.data;
             this.setState({
                 bnum: data.bnum,
@@ -117,6 +166,8 @@ class CBoardCUD extends Component {
             });
         });
     }
+
+   
     // view에서 넘어올 때에는 controller에서 넘어온 data를 props에 붙여
     // 출력할 수 있도록 함
 
@@ -141,6 +192,7 @@ class CBoardCUD extends Component {
         return (
             <div className="container-fluid px-5 my-5">
                 <Card className="px-5 py-5 d-flex formBody">
+                {contextValue => <h3>{`contextValueva : ${contextValue}`}</h3>}
                 <h1>게시글 {this.createHeaderName()}</h1>
                 {this.createArticleIdTag()}
                 <h3>제목</h3>
