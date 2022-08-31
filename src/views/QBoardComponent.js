@@ -1,17 +1,9 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import QBoardServices from "./QBoardServices";
-import { Link } from "react-router-dom";
 import QBoardList from "./QBoardList";
-import QboardReadForm from "./QboardReadForm";
-
+import QboardReadForm from "./QBoardReadForm";
 import QBoardCUD from "./QBoardCUD";
-
-import { render } from "@testing-library/react";
-
-
-
 
 class QBoardComponent extends Component {
     render(){

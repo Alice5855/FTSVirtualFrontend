@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
-import QboardReadForm from "./QboardReadForm";
+import QboardReadForm from "./QBoardReadForm";
 import QBoardServices from "./QBoardServices";
 
 
@@ -71,13 +71,25 @@ class QBoardCUD extends Component {
 
     createCrudBtn() {
         const crud = this.state.crud;
+
+        let btnColor = "";
+        if (crud === "Insert") {
+            btnColor = "btn btn-md btn-success"
+        } else if (crud === "Update") {
+            btnColor = "btn btn-md btn-warning"
+        } else if (crud === "Delete") {
+            btnColor = "btn btn-md btn-danger"
+        } else {
+            btnColor = "btn btn-md"
+        }
+
         if (crud === "View") {
             return null;
         } else {
             const crudName =
             crud === "Update" ? "수정" : crud === "Insert" ? "등록" : "삭제";
             return (
-            <button className="btn btn-md btn-success" onClick={() => this.crud()}>{crudName}</button>
+            <button className={btnColor} onClick={() => this.crud()}>{crudName}</button>
             );
         }
     }

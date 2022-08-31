@@ -6,6 +6,7 @@ import Footer from "./views/Footer";
 import CBoardComponent from "./views/CBoardComponent";
 import About from "./views/About";
 import NBoardComponent from "./views/NBoardComponent";
+import QBoardComponent from "./views/QBoardComponent";
 
 const App = () => {
   
@@ -18,6 +19,7 @@ const App = () => {
       {/* exact 속성을 state에 붙임. url이 정확히 '/'일 때만 Main component를 표시 */}
       <Route path = "/Community" component={CBoardComponent} />
       <Route path = "/Notice" component={NBoardComponent} />
+      <Route path= "/QnA" component={QBoardComponent} />
       <Route path={'/About'} component={About} />
       <Footer />
     </>

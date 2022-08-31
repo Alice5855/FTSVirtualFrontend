@@ -2,15 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "reactstrap";
 import QBoardServices from "./QBoardServices";
-import QBoardCUD from "./QBoardCUD";
 
-const {Provider, Consumer} = React.createContext();
-
-export {Consumer};
-
-
-
-class QboardReadForm extends Component {
+class QBoardReadForm extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -116,4 +109,4 @@ class QboardReadForm extends Component {
         )
     }
 }
-export default QboardReadForm;
+export default QBoardReadForm;
