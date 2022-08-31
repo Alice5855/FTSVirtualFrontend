@@ -47,12 +47,9 @@ body{
         height: 150% !important;
         top: -25%;
     }
-    .logoImg {
-        width: !important;
-    }
     .secretLink {
-        width: ;
-        height: ;
+        width: 50px !important;
+        height: 100px !important;
     }
 }
 
@@ -79,10 +76,14 @@ body{
         width: 50px;
     }
     .logoImg {
-        width: !important;
+        width: 35% !important;
+    }
+    .filler {
+        width: 0;
+        display: block;
     }
     .secretLink {
-        width: ;
-        height: ;
+        width: 30px !important;
+        height: 55px !important;
     }
 }
