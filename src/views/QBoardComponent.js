@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import QBoardList from "./QBoardList";
-import QboardReadForm from "./QBoardReadForm";
+import QBoardReadForm from "./QBoardReadForm";
 import QBoardCUD from "./QBoardCUD";
 
 class QBoardComponent extends Component {
@@ -17,7 +17,7 @@ class QBoardComponent extends Component {
                 </div>
                 <Route path={"/QnA"} component={QBoardList} exact={true} />
                 <Route path={"/QnA/crud:crud"} component={QBoardCUD} />
-                <Route path={"/QnA/view/bnum=:bnum"} component={QboardReadForm} />
+                <Route path={"/QnA/view/bnum=:bnum"} component={QBoardReadForm} />
                 
                 
             </div>
