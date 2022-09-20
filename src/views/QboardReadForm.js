@@ -20,7 +20,7 @@ class QBoardReadForm extends Component {
     }
 
     getBoardData(bnum){
-        console.log("겟보드데이터 실행")
+        console.log("겟보드데난빡통이다이터 실행")
         QBoardServices.getBoard(bnum).then((res)=>{
             this.setState({
                 bnum:res.data.board.bnum,
